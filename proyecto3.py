@@ -27,16 +27,24 @@ monedas_ingresadas = 0
 titulo_contador = Label(principal,text = '₡' + str(monedas_ingresadas),font= ('Times New Roman',13),bg= 'black',fg= 'white')
 #contador de monedas faltante
 titulo_contadorf = Label(principal,text = '₡' + str(monedas_faltantes),font= ('Times New Roman',13),bg= 'black',fg= 'white')
-#crea el titulo de ingresar dinero
-titulo_inserte = Label(principal,text = 'Por favor inserte su dinero',font= ('Times New Roman',13),bg= 'black',fg= 'white')
-#titulo de dinero ingresado
-titulo_dinero = Label(principal,text = 'Dinero ingresado',font= ('Times New Roman',13),bg= 'black',fg= 'white')
-#titulo de dinero faltante
-titulo_dinerof = Label(principal,text = 'Dinero faltante',font= ('Times New Roman',13),bg= 'black',fg= 'white')
-#titulo de imprimiendo tiquete
-titulo_imprimiendo = Label(principal,text = 'Imprimiendo \n su \n tiquete',font= ('Times New Roman',25),bg= 'black',fg= 'white')
-#titulo de tome su tiquete
-titulo_tome= Label(principal,text = 'Por favor \n tome \n su \n tiquete',font= ('Times New Roman',25),bg= 'black',fg= 'white')
+#crea el titulo de ingresar dinero(español e ingles)
+tituloe_inserte = Label(principal,text = 'Por favor inserte su dinero',font= ('Times New Roman',13),bg= 'black',fg= 'white')
+tituloi_inserte = Label(principal,text = 'Please insert your money',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
+#titulo de dinero ingresado(español e ingles)
+tituloe_dinero = Label(principal,text = 'Dinero ingresado',font= ('Times New Roman',13),bg= 'black',fg= 'white')
+tituloi_dinero = Label(principal,text = 'Money entered',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
+#titulo de dinero faltante(español e ingles)
+tituloe_dinerof = Label(principal,text = 'Dinero faltante',font= ('Times New Roman',13),bg= 'black',fg= 'white')
+tituloi_dinerof = Label(principal,text = 'Dinero missing',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
+#titulo de imprimiendo tiquete(español e ingles)
+tituloe_imprimiendo = Label(principal,text = 'Imprimiendo \n su \n tiquete',font= ('Times New Roman',25),bg= 'black',fg= 'white')
+tituloi_imprimiendo = Label(principal,text = 'Printing \nyour \nticket',font= ('Times New Roman',22),bg= 'black',fg= 'light blue')
+#titulo de tome su tiquete(español e ingles)
+tituloe_tome= Label(principal,text = 'Por favor \n tome  su \n tiquete',font= ('Times New Roman',25),bg= 'black',fg= 'white')
+tituloi_tome = Label(principal,text = 'please take \n it your \n ticket',font= ('Times New Roman',22),bg= 'black',fg= 'light blue')
+#titulo de desea hacerlo otra vez(español e ingles)
+tituloe_vuelto= Label(principal,text = 'Por favor \n tome  su \n vuelto',font= ('Times New Roman',25),bg= 'black',fg= 'white')
+tituloi_vuelto = Label(principal,text = 'please take \n it your \n turned',font= ('Times New Roman',22),bg= 'black',fg= 'light blue')
 
 #imagnes de la impresion del boleto
 boleto1 = PhotoImage(file = '1.png')
@@ -69,15 +77,42 @@ boleto21 = PhotoImage(file = '21.png')
 #lista con las imagenes de impresion del boleto
 animacion = [boleto1,boleto2,boleto3,boleto4,boleto5,boleto6,boleto7,boleto8,boleto9,boleto10,boleto11,boleto12,boleto13,boleto14,boleto15,boleto16,boleto17,boleto18,boleto19,boleto20,boleto21,boleto21]
 ############################
-#funcion para tomar el boletp
+#variable para crear el canvas
+canvas = 0
+
+#E:-
+#S:guarda(elimina el canvas) el tiquete
+#R:-
+def guardar():
+    canvas.place_forget()
+    boleto_guardar.place_forget()
+#boton de guardar boleto
+boleto_guardar = Button(principal, text = 'Guadar',command = guardar)
+
+#E:-
+#S:vuelve al primer menu
+#R:-
+
+
+
+#E:-
+#S:enseña el tiquete al usuario
+#R:-
 def tomar():
+    tituloe_tome.place_forget()
+    tituloi_tome.place_forget()
     boleto.place_forget()
+    tituloe_vuelto.place(x= 170,y=200)
+    tituloi_vuelto.place(x= 170,y=350)
+    global canvas
     canvas = Canvas(principal , width= 400, height = 200, bg = "white")
     resultado = Label(canvas,text = 'TE AMO MI VIDA',font= ('Times New Roman',17),bg= 'white',fg= 'black')
     resultado.place(x=100,y=100)
     canvas.place(x=100, y=200)
+    boleto_guardar.place(x=400,y=400)
+    
 
-#boton del boleto
+#boton del tomar el boleto
 boleto = Button(principal, image=boleto21,command = tomar)
 #hilo
 def imprimir1():
@@ -87,8 +122,10 @@ def imprimir1_aux(lista):
     if lista[1:] == []:
         img.place_forget()
         boleto.place(x= 425,y=177)
-        titulo_imprimiendo.place_forget()
-        titulo_tome.place(x=180,y=230)
+        tituloe_imprimiendo.place_forget()
+        tituloi_imprimiendo.place_forget()
+        tituloe_tome.place(x= 200,y=200)
+        tituloi_tome.place(x= 200,y=350)
         return lista[0]
     
     else:
@@ -113,13 +150,10 @@ def suma_25():
         global m_colones
         m_colones.destroy()
         img.place(x=425,y = 177)
-        titulo_inserte.place_forget()
-        titulo_dinero.place_forget()
-        titulo_dinerof.place_forget()
-        titulo_contador.place_forget()
-        titulo_contadorf.place_forget()
-        fle.place_forget()
-        titulo_imprimiendo.place(x= 180,y=250)
+        segunda =[tituloe_inserte.place_forget(),tituloi_inserte.place_forget(),tituloe_dinero.place_forget(),tituloi_dinero.place_forget(),tituloe_dinerof.place_forget(),
+                  tituloi_dinerof.place_forget(),titulo_contador.place_forget(),titulo_contadorf.place_forget(),fle.place_forget()]
+        tituloe_imprimiendo.place(x= 180,y=200)
+        tituloi_imprimiendo.place(x= 220,y=350)
         hilo1()
 
 #E:-
@@ -136,13 +170,10 @@ def suma_50():
         global m_colones
         m_colones.destroy()
         img.place(x=425,y = 177)
-        titulo_inserte.place_forget()
-        titulo_dinero.place_forget()
-        titulo_dinerof.place_forget()
-        titulo_contador.place_forget()
-        titulo_contadorf.place_forget()
-        fle.place_forget()
-        titulo_imprimiendo.place(x= 180,y=250)
+        segunda =[tituloe_inserte.place_forget(),tituloi_inserte.place_forget(),tituloe_dinero.place_forget(),tituloi_dinero.place_forget(),tituloe_dinerof.place_forget(),
+                  tituloi_dinerof.place_forget(),titulo_contador.place_forget(),titulo_contadorf.place_forget(),fle.place_forget()]
+        tituloe_imprimiendo.place(x= 180,y=200)
+        tituloi_imprimiendo.place(x= 220,y=350)
         hilo1()
 
 
@@ -160,13 +191,10 @@ def suma_100():
         global m_colones
         m_colones.destroy()
         img.place(x=425,y = 177)
-        titulo_inserte.place_forget()
-        titulo_dinero.place_forget()
-        titulo_dinerof.place_forget()
-        titulo_contador.place_forget()
-        titulo_contadorf.place_forget()
-        fle.place_forget()
-        titulo_imprimiendo.place(x= 180,y=250)
+        segunda =[tituloe_inserte.place_forget(),tituloi_inserte.place_forget(),tituloe_dinero.place_forget(),tituloi_dinero.place_forget(),tituloe_dinerof.place_forget(),
+                  tituloi_dinerof.place_forget(),titulo_contador.place_forget(),titulo_contadorf.place_forget(),fle.place_forget()]
+        tituloe_imprimiendo.place(x= 180,y=200)
+        tituloi_imprimiendo.place(x= 220,y=350)
         hilo1()
 
         
@@ -205,40 +233,88 @@ def colones():
 
 
 
-#abre la maquina en español
-def selecciono_español():
+#E:-
+#S:menu de consejos
+#R:-
+def selecciono_consejo():
     #quita las coasas del primer menu
-    titulo_español.place_forget()
-    español.place_forget()
-    titulo_ingles.place_forget()
-    ingles.place_forget()
-    titulo_inserte.place(x=150,y=200)
-    fle.place(x=270,y =280)
-    titulo_dinero.place(x=150,y=430)
-    #pone contdor de monedas ingresadas 
-    titulo_contador.place(x=150,y=450)
-    
-    titulo_dinerof.place(x=280,y=430)
-    #pone contdor de monedas faltantes 
-    titulo_contadorf.place(x=280,y=450)
+    primera = [titulo_bienvenidoe.place_forget(),titulo_bienvenidoi.place_forget(),consejo.place_forget(),dicho.place_forget(),Chistes.place_forget(),
+               pe_consejo.place_forget(),pi_consejo.place_forget(),pe_dicho.place_forget(),pi_dicho.place_forget(),pe_Chistes.place_forget(),pi_Chistes.place_forget()]
+    global monedas_faltantes
+    monedas_faltantes = 20
+    titulo_contadorf.configure(text= '₡' + str(monedas_faltantes))
+    segundap = [titulo_contador,titulo_contadorf,tituloe_inserte.place(x=150,y=200),tituloi_inserte.place(x=150,y=220),tituloe_dinerof.place(x=280,y=410),
+                tituloi_dinerof.place(x=280,y=430),tituloe_dinero.place(x=150,y=410),tituloi_dinero.place(x=150,y=430),titulo_contador.place(x=150,y=450),
+                titulo_contadorf.place(x=280,y=450),fle.place(x=270,y =280)]
+     
+    colones()
+#E:-
+#S:menu de consejos
+#R:-
+def selecciono_dicho():
+    #quita las coasas del primer menu
+    primera = [titulo_bienvenidoe.place_forget(),titulo_bienvenidoi.place_forget(),consejo.place_forget(),dicho.place_forget(),Chistes.place_forget(),
+               pe_consejo.place_forget(),pi_consejo.place_forget(),pe_dicho.place_forget(),pi_dicho.place_forget(),pe_Chistes.place_forget(),pi_Chistes.place_forget()]
+    global monedas_faltantes
+    monedas_faltantes = 100
+    titulo_contadorf.configure(text= '₡' + str(monedas_faltantes))
+    segundap = [titulo_contador,titulo_contadorf,tituloe_inserte.place(x=150,y=200),tituloi_inserte.place(x=150,y=220),tituloe_dinerof.place(x=280,y=410),
+                tituloi_dinerof.place(x=280,y=430),tituloe_dinero.place(x=150,y=410),tituloi_dinero.place(x=150,y=430),titulo_contador.place(x=150,y=450),
+                titulo_contadorf.place(x=280,y=450),fle.place(x=270,y =280)]
+    colones()
+#E:-
+#S:menu de consejos
+#R:-
+def selecciono_chiste():
+    #quita las coasas del primer menu
+    primera = [titulo_bienvenidoe.place_forget(),titulo_bienvenidoi.place_forget(),consejo.place_forget(),dicho.place_forget(),Chistes.place_forget(),
+               pe_consejo.place_forget(),pi_consejo.place_forget(),pe_dicho.place_forget(),pi_dicho.place_forget(),pe_Chistes.place_forget(),pi_Chistes.place_forget()]
+    global monedas_faltantes
+    monedas_faltantes = 150
+    titulo_contadorf.configure(text= '₡' + str(monedas_faltantes))
+    segundap = [titulo_contador,titulo_contadorf,tituloe_inserte.place(x=150,y=200),tituloi_inserte.place(x=150,y=220),tituloe_dinerof.place(x=280,y=410),
+                tituloi_dinerof.place(x=280,y=430),tituloe_dinero.place(x=150,y=410),tituloi_dinero.place(x=150,y=430),titulo_contador.place(x=150,y=450),
+                titulo_contadorf.place(x=280,y=450),fle.place(x=270,y =280)]
     colones()
 
-#titulo para sleccionar el idioma en español
-titulo_español = Label(principal,text = '¿Desea el idioma en español?',font= ('Times New Roman',13),bg= 'black',fg= 'white')
-titulo_español.place(x=150,y=200)
-#boton para selccionar español
-español = Button(principal,text= 'OPRIMA AQUI',command= selecciono_español)
-español.place(x= 220,y=250)
+#titulos bienevenido (español e ingles)
+titulo_bienvenidoe = Label(principal,text = 'Bienvenido ¿Que desea obtener?',font= ('Times New Roman',13),bg= 'black',fg= 'white')
+titulo_bienvenidoe.place(x=150,y=200)
+titulo_bienvenidoi = Label(principal,text = 'Welcome ¿What do you want to get?',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
+titulo_bienvenidoi.place(x=160,y=220)
 
-#titulo para sleccionar el idioma en ingles
-titulo_ingles = Label(principal,text = '¿You want the language in English?',font= ('Times New Roman',13),bg= 'black',fg= 'white')
-titulo_ingles.place(x=135,y=300)
 
-#boton para selccionar INGLES
-ingles = Button(principal,text= 'CLICK HERE')
-ingles.place(x= 220,y=350)
 
-    
+
+#boton para consejo
+consejo= Button(principal,text= '  Consejo \n (Advice)',command= selecciono_consejo)
+consejo.place(x= 150,y=300)
+#precio del consejo (español e ingles)
+pe_consejo = Label(principal,text = 'Precio: ₡20 ',font= ('Times New Roman',9),bg= 'black',fg= 'white')
+pe_consejo.place(x=150,y=343)
+pi_consejo = Label(principal,text = 'Price: ₡20 ',font= ('Times New Roman',9),bg= 'black',fg= 'light blue')
+pi_consejo.place(x=150,y=362)
+
+#boton para dicho
+dicho= Button(principal,text= '  Dicho \n (Saying)',command= selecciono_dicho)
+dicho.place(x= 300,y=300)
+#precio del dicho (español e ingles)
+pe_dicho = Label(principal,text = 'Precio: ₡100 ',font= ('Times New Roman',9),bg= 'black',fg= 'white')
+pe_dicho.place(x=300,y=343)
+pi_dicho = Label(principal,text = 'Price: ₡100 ',font= ('Times New Roman',9),bg= 'black',fg= 'light blue')
+pi_dicho.place(x=300,y=362)
+#boton para Chistes
+Chistes= Button(principal,text= '  Chistes \n (Jokes)',command= selecciono_chiste)
+Chistes.place(x= 220,y=380)
+
+#precio del Chistes (español e ingles)
+pe_Chistes = Label(principal,text = 'Precio: ₡150 ',font= ('Times New Roman',9),bg= 'black',fg= 'white')
+pe_Chistes.place(x=220,y=423)
+pi_Chistes = Label(principal,text = 'Price: ₡150 ',font= ('Times New Roman',9),bg= 'black',fg= 'light blue')
+pi_Chistes.place(x=220,y=442)
+
+
+ 
 
 #tamaño de la ventana
 principal.geometry('600x700+400+0')
