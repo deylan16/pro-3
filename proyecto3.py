@@ -18,7 +18,13 @@ fon.place(x=0,y =0)
 #pone la flevha de las monedas
 flecha = PhotoImage(file = "flecha.png")
 fle = Label(principal,image = flecha,bg = 'black')
+#variable par ausar el boton regresar
+bandera_regresar = False
 
+#varaiable para no poder volver a usar admi
+bandera_admi = True
+#variable que cuenta cuantas monedas de vuelto hay
+cuenta = 0
 #variable para abrir la billetera
 m_colones =0
 #monedas faltantes
@@ -53,6 +59,9 @@ titulo_contraseñai = Label(principal,text = 'Please enter your password',font= 
 #titulo de bienvenido al admi
 titulo_admie = Label(principal,text = 'Bienvenido Admi',font= ('Times New Roman',13),bg= 'black',fg= 'white')
 titulo_admii = Label(principal,text = 'Welcome Admi',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
+#titulo de gracias y si desea hacerlo otra vez
+titulo_graciase= Label(principal,text = 'Muchas Gracias \n si desea hacerlo \n otra vez  \n oprima regresar',font= ('Times New Roman',21),bg= 'black',fg= 'white')
+titulo_graciasi = Label(principal,text = 'Thank you very \n much if you want \nto do it again \n  press return',font= ('Times New Roman',18),bg= 'black',fg= 'light blue')
 
 
 
@@ -145,11 +154,33 @@ vuelto1004 = PhotoImage(file = "100/vuelto1004.png")
 vuelto1005 = PhotoImage(file = "100/vuelto1005.png")
 vuelt100 = Label(principal,image = vuelto100,bg ="#555869")
 animacion100= [vuelto1005,vuelto1004,vuelto1003,vuelto1002,vuelto1001,vuelto100,vuelto100]
+#E:-
+#S: variable menos 1 
+#R:-
+def recoger_m(boton):
+        global cuenta
+        boton.place_forget()
+        cuenta -= 1
+        if cuenta ==0:
+            global bandera_regresar
+            tituloe_vuelto.place_forget()
+            tituloi_vuelto.place_forget()
+            bandera_regresar = True
+            titulo_graciase.place(x= 150,y=190)
+            titulo_graciasi.place(x= 150,y=350)
+
+
+            
 #E:lista con imagnes,cordenadas en y en las que va a empezar,cordenadas en x,coordenadas en y hasta la que va a llegar, objero que se va a omer
 #S:animacion del vuelto
 #R:-
 def animacionV(lista,suma,x,y,objeto):
     if suma > y:
+        objeto.place_forget()
+        global cuenta
+        cuenta += 1
+        moneda= Button(principal,image = lista[0],bg ="#555869",command =lambda: recoger_m(moneda))
+        moneda.place(x= x,y=y)
         return lista[0]
     elif lista[1:] == []:
         suma += 10
@@ -161,7 +192,7 @@ def animacionV(lista,suma,x,y,objeto):
         objeto.configure(image =lista[0])
         sleep(0.1)
         return animacionV(lista[1:],suma,x,y,objeto)
-    
+ 
 #E:-
 #S:llama a moneda para dar el vuelto
 #R:-
@@ -172,6 +203,13 @@ def vuelto():
     return vuelto_aux(vuel)
 def vuelto_aux(vuelto):
     if vuelto == 0:
+        global bandera_regresar
+        tituloe_vuelto.place_forget()
+        tituloi_vuelto.place_forget()
+        bandera_regresar = True
+        titulo_graciase.place(x= 150,y=190)
+        titulo_graciasi.place(x= 150,y=350)
+        
         return 0
     elif vuelto >= 100:
         vuelt100.place(x=140,y =557)
@@ -235,6 +273,9 @@ def imprimir1_aux(lista):
         sleep(0.5)
         return imprimir1_aux(lista[1:])
 def hilo1():
+    nuevo.set_fecha(strftime("%d/%m/%y"))
+    nuevo.set_hora(strftime("%H:%M:%S")[:5])
+    nuevo.set_numero_transaccion(535)
     t1 = Thread(target = imprimir1, args=())
     t1.start()
 
@@ -337,13 +378,15 @@ def colones():
     m_colones.geometry('50x650+290+0')
     m_colones.mainloop()
 
-
+#variable para no usar lo botones
 bandera =  True
 #E:-
 #S:presenta la pantalla de cobro
 #R:-
 def cobro(tipo):
     global bandera
+    global bandera_admi
+    bandera_admi = False
     if bandera == True:
         bandera = False
         #quita las coasas del primer menu
@@ -403,18 +446,26 @@ def verifica(contraseñ):
     else:
         messagebox.showerror('X', 'contraseña incorrecta \n Incorrect password')
 
+
 #E:-
 #S:abre el menu de admi
 #R:-
 def menu_admi():
-    global bandera
-    bandera = False
-    primera = [titulo_bienvenidoe.place_forget(),titulo_bienvenidoi.place_forget()]
-    titulo_contraseñae.place(x=150,y=200)
-    titulo_contraseñai.place(x=160,y=220)
-    contraseña.place(x=160,y=240)
+    global bandera_admi
+    global bandera_regresar
+    bandera_regresar = True
     
-    Aceptar.place(x= 160,y=260)
+    if bandera_admi == True:
+        global bandera
+        bandera = False
+        bandera_admi = False
+        primera = [titulo_bienvenidoe.place_forget(),titulo_bienvenidoi.place_forget()]
+        titulo_contraseñae.place(x=150,y=200)
+        titulo_contraseñai.place(x=160,y=220)
+        contraseña.place(x=160,y=240)
+        contraseña.delete(0, END)
+        
+        Aceptar.place(x= 160,y=260)
         
 
 #titulos bienevenido (español e ingles)
@@ -424,6 +475,32 @@ titulo_bienvenidoi = Label(principal,text = 'Welcome ¿What do you want to get?'
 titulo_bienvenidoi.place(x=160,y=220)
 
 
+#E:-
+#S:regresa al primer menu
+#R:-
+def regresa():
+    global bandera_regresar
+    global bandera_admi
+    global bandera
+    if bandera_regresar == True:
+        bandera_regresar = False
+        bandera_admi = True
+        bandera = True
+        titulo_bienvenidoi.place(x=160,y=220)
+        titulo_bienvenidoe.place(x=150,y=200)
+        titulo_contraseñae.place_forget()
+        titulo_contraseñai.place_forget()
+        contraseña.place_forget()
+        Aceptar.place_forget()
+        reset.place_forget()
+        apagar.place_forget()
+        Resumen.place_forget()
+        titulo_admie.place_forget()
+        titulo_admii.place_forget()
+        titulo_graciase.place_forget()
+        titulo_graciasi.place_forget()
+    
+    
 
 
 #boton para consejo
@@ -438,6 +515,9 @@ Chistes.place(x= 360,y=500)
 #boton para admi
 admi= Button(principal,text= 'Admi',command = menu_admi)
 admi.place(x= 140,y=125)
+#boton para regresar
+principio= Button(principal,text= 'Regresar',command = regresa)
+principio.place(x= 440,y=620)
 
 
 
