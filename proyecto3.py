@@ -4,6 +4,7 @@ from threading import Thread
 from time import *
 from tkinter import messagebox
 from random import *
+from tabla_ventas import *
 
 #define la ventana principal
 principal = Tk()
@@ -49,6 +50,9 @@ tituloi_vuelto = Label(principal,text = 'please take \n it your \n turned',font=
 #titulo de digite la contraseña
 titulo_contraseñae = Label(principal,text = 'Por favor digite si contaseña',font= ('Times New Roman',13),bg= 'black',fg= 'white')
 titulo_contraseñai = Label(principal,text = 'Please enter your password',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
+#titulo de bienvenido al admi
+titulo_admie = Label(principal,text = 'Bienvenido Admi',font= ('Times New Roman',13),bg= 'black',fg= 'white')
+titulo_admii = Label(principal,text = 'Welcome Admi',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
 
 
 
@@ -92,6 +96,7 @@ canvas = 0
 def guardar():
     canvas.place_forget()
     boleto_guardar.place_forget()
+    nuevo
 #boton de guardar boleto
 boleto_guardar = Button(principal, text = 'Guadar',command = guardar)
 #animacion del vuelto
@@ -161,7 +166,10 @@ def animacionV(lista,suma,x,y,objeto):
 #S:llama a moneda para dar el vuelto
 #R:-
 def vuelto():
-    return vuelto_aux(abs(monedas_faltantes))
+    vuel =abs(monedas_faltantes)
+    nuevo.set_vuelto(vuel)
+    nuevo.set_pago(monedas_ingresadas)
+    return vuelto_aux(vuel)
 def vuelto_aux(vuelto):
     if vuelto == 0:
         return 0
@@ -338,15 +346,18 @@ def cobro(tipo):
     global bandera
     if bandera == True:
         bandera = False
-        print(bandera)
         #quita las coasas del primer menu
         primera = [titulo_bienvenidoe.place_forget(),titulo_bienvenidoi.place_forget()]
         global monedas_faltantes
+        global nuevo
         if tipo == 1:
+            nuevo.set_tipo(1)
             monedas_faltantes = 20
         if tipo == 2:
+            nuevo.set_tipo(2)
             monedas_faltantes =300
         if tipo == 3:
+            nuevo.set_tipo(3)
             monedas_faltantes = 400
         titulo_contadorf.configure(text= '₡' + str(monedas_faltantes))
         segundap = [titulo_contador,titulo_contadorf,tituloe_inserte.place(x=150,y=200),tituloi_inserte.place(x=150,y=220),tituloe_dinerof.place(x=280,y=410),
@@ -354,31 +365,44 @@ def cobro(tipo):
                     titulo_contadorf.place(x=280,y=450),fle.place(x=270,y =280)]
          
         colones()
+
+#E:-
+#S:cierra el programa
+#R:-
+def cerrar():
+    principal.destroy()
 #boton para verificar la contrase
 Aceptar= Button(principal,text= ' Aceptar/Accept',command=  lambda: verifica(contraseña.get()))
 
 #boton de reset
 reset= Button(principal,text= ' Reset')
 ##boton apagar
-apagar= Button(principal,text= ' Apagar/Turn off')
+apagar= Button(principal,text= ' Apagar/Turn off',command = cerrar)
 ##boton resumen de ventas
 Resumen= Button(principal,text= ' Resumen de ventas/Sales summary')
 #entry para ingresar la contrase
 contraseña = Entry(principal, show="*", width=30)
     
 
+
+#E:dato que se ingreso en el entry
+#S:menu de admi
+#R:-
 def verifica(contraseñ):
     if contraseñ == 'jeff eres lo mejor':
         contraseña.place_forget()
         Aceptar.place_forget()
         titulo_contraseñae.place_forget()
         titulo_contraseñai.place_forget()
-        reset.place(x=160,y=220)
-        apagar.place(x=160,y=260)
-        Resumen.place(x=160,y=300)
+        reset.place(x=160,y=260)
+        apagar.place(x=160,y=300)
+        Resumen.place(x=160,y=340)
+        titulo_admie.place(x=150,y=200)
+        titulo_admii.place(x=150,y=220)
         
     else:
         messagebox.showerror('X', 'contraseña incorrecta \n Incorrect password')
+
 #E:-
 #S:abre el menu de admi
 #R:-
