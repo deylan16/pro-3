@@ -251,8 +251,6 @@ def animacionV(lista,suma,x,y,objeto):
 #R:-
 def vuelto():
     vuel =abs(monedas_faltantes)
-    tiqueteale.set_vuelto(vuel)
-    tiqueteale.set_pago(monedas_ingresadas)
     return vuelto_aux(vuel)
 def vuelto_aux(vuelto):
     if vuelto == 0:
@@ -332,6 +330,9 @@ def hilo1():
     tiqueteale.set_fecha(strftime("%d/%m/%y"))
     tiqueteale.set_hora(strftime("%H:%M:%S")[:5])
     tiqueteale.set_numero_transaccion(1)
+    vuel =abs(monedas_faltantes)
+    tiqueteale.set_vuelto(vuel)
+    tiqueteale.set_pago(monedas_ingresadas)
     tablaventas=tiqueteale.get_datos()
     archivov = open('ventas.txt','w')
     archivov.write('----------------------------------------------------------------------------------\n')
