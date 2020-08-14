@@ -46,6 +46,40 @@ venta113=0
 venta114=0
 venta115=0
 venta116=0
+venta21 = 0
+venta22=0
+venta23=0
+venta24=0
+venta25=0
+venta26=0
+venta27=0
+venta28=0
+venta29=0
+venta210=0
+venta211=0
+venta212=0
+venta213=0
+venta214=0
+venta215=0
+venta216=0
+venta217=0
+venta31 = 0
+venta32=0
+venta33=0
+venta34=0
+venta35=0
+venta36=0
+venta37=0
+venta38=0
+venta39=0
+venta310=0
+venta311=0
+venta312=0
+venta313=0
+venta314=0
+venta315=0
+venta316=0
+venta317=0
 #monedas faltantes
 monedas_faltantes = 200
 #monedas ingresadas
@@ -416,10 +450,11 @@ def cobro(tipo):
         global monedas_faltantes
         global nuevo
         global tiqueteale
-        global venta11,venta12,venta13,venta14,venta15,venta16,venta17,venta18,venta19,venta110,venta111,venta112,venta113,venta114,venta115,venta116
+        global venta11,venta12,venta13,venta14,venta15,venta16,venta17,venta18,venta19,venta110,venta111,venta112,venta113,venta114,venta115,venta116,venta21,venta22,venta23,venta24,venta25,venta26,venta27,venta28,venta29,venta210,venta211,venta212,venta213,venta214,venta215,venta216,venta217,venta31,venta32,venta33,venta34,venta35,venta36,venta37,venta38,venta39,venta310,venta311,venta312,venta313,venta314,venta315,venta316,venta317
         if tipo == 1:
             tiqueteale = random.choice(consejos)
             monedas_faltantes = tiqueteale.get_precio()
+            tiqueteale.set_monto(tiqueteale.get_precio())
             if tiqueteale.get_codigo() == 1:
                 venta11+=1
             if tiqueteale.get_codigo() == 2:
@@ -455,9 +490,77 @@ def cobro(tipo):
         if tipo == 2:
             tiqueteale = random.choice(dichos)
             monedas_faltantes =tiqueteale.get_precio()
+            if tiqueteale.get_codigo() == 1:
+                venta21+=1
+            if tiqueteale.get_codigo() == 2:
+                venta22+=1
+            if tiqueteale.get_codigo() == 3:
+                venta23+=1
+            if tiqueteale.get_codigo() == 4:
+                venta24+=1
+            if tiqueteale.get_codigo() == 5:
+                venta25+=1
+            if tiqueteale.get_codigo() == 6:
+                venta26+=1
+            if tiqueteale.get_codigo() == 7:
+                venta27+=1
+            if tiqueteale.get_codigo() == 8:
+                venta28+=1
+            if tiqueteale.get_codigo() == 9:
+                venta29+=1
+            if tiqueteale.get_codigo() == 10:
+                venta210+=1
+            if tiqueteale.get_codigo() == 11:
+                venta211+=1
+            if tiqueteale.get_codigo() == 12:
+                venta212+=1
+            if tiqueteale.get_codigo() == 13:
+                venta213+=1
+            if tiqueteale.get_codigo() == 14:
+                venta214+=1
+            if tiqueteale.get_codigo() == 15:
+                venta215+=1
+            if tiqueteale.get_codigo() == 16:
+                venta216+=1
+            if tiqueteale.get_codigo() == 17:
+                venta217+=1
         if tipo == 3:
             tiqueteale = random.choice(chistes)
             monedas_faltantes = tiqueteale.get_precio()
+            if tiqueteale.get_codigo() == 1:
+                venta31+=1
+            if tiqueteale.get_codigo() == 2:
+                venta32+=1
+            if tiqueteale.get_codigo() == 3:
+                venta33+=1
+            if tiqueteale.get_codigo() == 4:
+                venta34+=1
+            if tiqueteale.get_codigo() == 5:
+                venta35+=1
+            if tiqueteale.get_codigo() == 6:
+                venta36+=1
+            if tiqueteale.get_codigo() == 7:
+                venta37+=1
+            if tiqueteale.get_codigo() == 8:
+                venta38+=1
+            if tiqueteale.get_codigo() == 9:
+                venta39+=1
+            if tiqueteale.get_codigo() == 10:
+                venta310+=1
+            if tiqueteale.get_codigo() == 11:
+                venta311+=1
+            if tiqueteale.get_codigo() == 12:
+                venta312+=1
+            if tiqueteale.get_codigo() == 13:
+                venta313+=1
+            if tiqueteale.get_codigo() == 14:
+                venta314+=1
+            if tiqueteale.get_codigo() == 15:
+                venta315+=1
+            if tiqueteale.get_codigo() == 16:
+                venta316+=1
+            if tiqueteale.get_codigo() == 17:
+                venta317+=1
         titulo_contadorf.configure(text= '₡' + str(monedas_faltantes))
         segundap = [titulo_contador,titulo_contadorf,tituloe_inserte.place(x=150,y=200),tituloi_inserte.place(x=150,y=220),tituloe_dinerof.place(x=280,y=410),
                     tituloi_dinerof.place(x=280,y=430),tituloe_dinero.place(x=150,y=410),tituloi_dinero.place(x=150,y=430),titulo_contador.place(x=150,y=450),
@@ -471,10 +574,51 @@ def cobro(tipo):
         archivo.write('1       3       Sueña mas cuando                 50        %s'%venta13+'\n')
         archivo.write('1       4       No tienes que gana               20        %s'%venta14+'\n')
         archivo.write('1       5       No compares tu vida              75        %s'%venta15+'\n')
-        archivo.write('1       6       La vida es demasia               100       %s'%venta16+'\n')
+        archivo.write('1       6       La vida es demasiado corta       100       %s'%venta16+'\n')
         archivo.write('1       7       Nadie mas está al                25        %s'%venta17+'\n')
         archivo.write('1       8       Ríe y sonríe más a               20        %s'%venta18+'\n')
-        archivo.write('1       9       Duerme 8 horas al                100       %s'%venta19+'\n')
+        archivo.write('1       9       Duerme 8 horas al dia            100       %s'%venta19+'\n')
+        archivo.write('1       10      Toma agua                        200       %s'%venta110+'\n')
+        archivo.write('1       11      Olvida los problemas             150       %s'%venta111+'\n')
+        archivo.write('1       12      Cualquiera que sea               75        %s'%venta112+'\n')
+        archivo.write('1       13      No importa cómo                  125       %s'%venta113+'\n')
+        archivo.write('1       14      Sé agradecido                    120       %s'%venta114+'\n')
+        archivo.write('1       15      No hagas siempre                 140       %s'%venta115+'\n')
+        archivo.write('1       16      Vive el hoy                      20        %s'%venta116+'\n')
+        archivo.write('2       1       No hay mal que por bien no       20        %s'%venta21+'\n')
+        archivo.write('2       2       Quien duerme mucho, poco         40        %s'%venta22+'\n')
+        archivo.write('2       3       De tal palo tal astilla          60        %s'%venta23+'\n')
+        archivo.write('2       4       No hay peor ciego que el         75        %s'%venta24+'\n')
+        archivo.write('2       5       El que no corre, vuela           45        %s'%venta25+'\n')
+        archivo.write('2       6       Nadie sabe lo que tiene          100       %s'%venta26+'\n')
+        archivo.write('2       7       Al mal tiempo buena cara         20        %s'%venta27+'\n')
+        archivo.write('2       8       A buen entendedor pocas          80        %s'%venta28+'\n')
+        archivo.write('2       9       A caballo regalado no se         55        %s'%venta29+'\n')
+        archivo.write('2       10      Barriga llena, corazón           45        %s'%venta210+'\n')
+        archivo.write('2       11      Más vale estar solo que mal      85        %s'%venta211+'\n')
+        archivo.write('2       12      El que busca encuentra           105       %s'%venta212+'\n')
+        archivo.write('2       13      Dime con quién andas             35        %s'%venta213+'\n')
+        archivo.write('2       14      Haz bien y no mires a quien      55        %s'%venta214+'\n')
+        archivo.write('2       15      La esperanza es lo último        60        %s'%venta215+'\n')
+        archivo.write('2       16      Lo prometido es deuda            40        %s'%venta216+'\n')
+        archivo.write('2       17      La pereza es la madre de         20        %s'%venta217+'\n')
+        archivo.write('3       1       -¡Estás obsesionado con la       200       %s'%venta31+'\n')
+        archivo.write('3       2       -¿Por qué estás hablando         140       %s'%venta32+'\n')
+        archivo.write('3       3       — Buenos días, me gustaría       300       %s'%venta33+'\n')
+        archivo.write('3       4       — ¡Camarero! Este filete         140       %s'%venta34+'\n')
+        archivo.write('3       5       — Abuelo, ¿por qué estás         200       %s'%venta35+'\n')
+        archivo.write('3       6       — ¿Para que va una caja          300       %s'%venta36+'\n')
+        archivo.write('3       7       — ¿Por qué se suicidó el         250       %s'%venta37+'\n')
+        archivo.write('3       8       — ¿Qué le dice un huevo          300       %s'%venta38+'\n')
+        archivo.write('3       9       — ¿Qué le dice un espagueti      130       %s'%venta39+'\n')
+        archivo.write('3       10      — ¿Qué le dice un grano de       170       %s'%venta310+'\n')
+        archivo.write('3       11      —¿Qué le dice un árbol a otro    180       %s'%venta311+'\n')
+        archivo.write('3       12      — ¿Cómo se llama el primo        150       %s'%venta312+'\n')
+        archivo.write('3       13      — Soy celíaca.                   240       %s'%venta313+'\n')
+        archivo.write('3       14      — ¿Sabes por qué no se           280       %s'%venta314+'\n')
+        archivo.write('3       15      — ¿Por qué el mar no se seca?    210       %s'%venta315+'\n')
+        archivo.write('3       16      — ¿De qué se quejan siempre      65        %s'%venta316+'\n')
+        archivo.write('3       17      — Mamá, en el cole me llaman     20        %s'%venta317+'\n')
         archivo.write('----------------------------------------------------------------------------\n')
         archivo.close()
          
@@ -488,8 +632,68 @@ def cerrar():
 #boton para verificar la contrase
 Aceptar= Button(principal,text= ' Aceptar/Accept',command=  lambda: verifica(contraseña.get()))
 
+#funcion reset
+def reset():
+    archivo = open('mensajes.txt','w')
+    archivo.write('----------------------------------------------------------------------------\n')
+    archivo.write('Tipo    Código  Mensaje                          Precio    Ventas\n')
+    archivo.write('----------------------------------------------------------------------------\n')
+    archivo.write('1       1       Lo que los demas piensen de      20        %s'%0+'\n')
+    archivo.write('1       2       No pierdas tu preciado           50        %s'%0+'\n')
+    archivo.write('1       3       Sueña mas cuando                 50        %s'%0+'\n')
+    archivo.write('1       4       No tienes que gana               20        %s'%0+'\n')
+    archivo.write('1       5       No compares tu vida              75        %s'%0+'\n')
+    archivo.write('1       6       La vida es demasiado corta       100       %s'%0+'\n')
+    archivo.write('1       7       Nadie mas está al                25        %s'%0+'\n')
+    archivo.write('1       8       Ríe y sonríe más a               20        %s'%0+'\n')
+    archivo.write('1       9       Duerme 8 horas al dia            100       %s'%0+'\n')
+    archivo.write('1       10      Toma agua                        200       %s'%0+'\n')
+    archivo.write('1       11      Olvida los problemas             150       %s'%0+'\n')
+    archivo.write('1       12      Cualquiera que sea               75        %s'%0+'\n')
+    archivo.write('1       13      No importa cómo                  125       %s'%0+'\n')
+    archivo.write('1       14      Sé agradecido                    120       %s'%0+'\n')
+    archivo.write('1       15      No hagas siempre                 140       %s'%0+'\n')
+    archivo.write('1       16      Vive el hoy                      20        %s'%0+'\n')
+    archivo.write('2       1       No hay mal que por bien no       20        %s'%0+'\n')
+    archivo.write('2       2       Quien duerme mucho, poco         40        %s'%0+'\n')
+    archivo.write('2       3       De tal palo tal astilla          60        %s'%0+'\n')
+    archivo.write('2       4       No hay peor ciego que el         75        %s'%0+'\n')
+    archivo.write('2       5       El que no corre, vuela           45        %s'%0+'\n')
+    archivo.write('2       6       Nadie sabe lo que tiene          100       %s'%0+'\n')
+    archivo.write('2       7       Al mal tiempo buena cara         20        %s'%0+'\n')
+    archivo.write('2       8       A buen entendedor pocas          80        %s'%0+'\n')
+    archivo.write('2       9       A caballo regalado no se         55        %s'%0+'\n')
+    archivo.write('2       10      Barriga llena, corazón           45        %s'%0+'\n')
+    archivo.write('2       11      Más vale estar solo que mal      85        %s'%0+'\n')
+    archivo.write('2       12      El que busca encuentra           105       %s'%0+'\n')
+    archivo.write('2       13      Dime con quién andas             35        %s'%0+'\n')
+    archivo.write('2       14      Haz bien y no mires a quien      55        %s'%0+'\n')
+    archivo.write('2       15      La esperanza es lo último        60        %s'%0+'\n')
+    archivo.write('2       16      Lo prometido es deuda            40        %s'%0+'\n')
+    archivo.write('2       17      La pereza es la madre de         20        %s'%0+'\n')
+    archivo.write('3       1       -¡Estás obsesionado con la       200       %s'%0+'\n')
+    archivo.write('3       2       -¿Por qué estás hablando         140       %s'%0+'\n')
+    archivo.write('3       3       — Buenos días, me gustaría       300       %s'%0+'\n')
+    archivo.write('3       4       — ¡Camarero! Este filete         140       %s'%0+'\n')
+    archivo.write('3       5       — Abuelo, ¿por qué estás         200       %s'%0+'\n')
+    archivo.write('3       6       — ¿Para que va una caja          300       %s'%0+'\n')
+    archivo.write('3       7       — ¿Por qué se suicidó el         250       %s'%0+'\n')
+    archivo.write('3       8       — ¿Qué le dice un huevo          300       %s'%0+'\n')
+    archivo.write('3       9       — ¿Qué le dice un espagueti      130       %s'%0+'\n')
+    archivo.write('3       10      — ¿Qué le dice un grano de       170       %s'%0+'\n')
+    archivo.write('3       11      —¿Qué le dice un árbol a otro    180       %s'%0+'\n')
+    archivo.write('3       12      — ¿Cómo se llama el primo        150       %s'%0+'\n')
+    archivo.write('3       13      — Soy celíaca.                   240       %s'%0+'\n')
+    archivo.write('3       14      — ¿Sabes por qué no se           280       %s'%0+'\n')
+    archivo.write('3       15      — ¿Por qué el mar no se seca?    210       %s'%0+'\n')
+    archivo.write('3       16      — ¿De qué se quejan siempre      65        %s'%0+'\n')
+    archivo.write('3       17      — Mamá, en el cole me llaman     20        %s'%0+'\n')
+    archivo.write('----------------------------------------------------------------------------\n')
+    archivo.close()
+ 
+
 #boton de reset
-reset= Button(principal,text= ' Reset')
+reset= Button(principal,text= ' Reset', command = reset)
 ##boton apagar
 apagar= Button(principal,text= ' Apagar/Turn off',command = cerrar)
 ##boton resumen de ventas

@@ -1,7 +1,54 @@
 ----------------------------------------------------------------------------
 Tipo    Código  Mensaje                          Precio    Ventas
 ----------------------------------------------------------------------------
-1       1       Lo que los demas piensen de      20        1
+1       1       Lo que los demas piensen de      20        0
 1       2       No pierdas tu preciado           50        0
 1       3       Sueña mas cuando                 50        0
+1       4       No tienes que gana               20        0
+1       5       No compares tu vida              75        0
+1       6       La vida es demasiado corta       100       0
+1       7       Nadie mas está al                25        0
+1       8       Ríe y sonríe más a               20        0
+1       9       Duerme 8 horas al dia            100       0
+1       10      Toma agua                        200       0
+1       11      Olvida los problemas             150       0
+1       12      Cualquiera que sea               75        0
+1       13      No importa cómo                  125       0
+1       14      Sé agradecido                    120       0
+1       15      No hagas siempre                 140       0
+1       16      Vive el hoy                      20        0
+2       1       No hay mal que por bien no       20        0
+2       2       Quien duerme mucho, poco         40        0
+2       3       De tal palo tal astilla          60        0
+2       4       No hay peor ciego que el         75        0
+2       5       El que no corre, vuela           45        0
+2       6       Nadie sabe lo que tiene          100       0
+2       7       Al mal tiempo buena cara         20        0
+2       8       A buen entendedor pocas          80        0
+2       9       A caballo regalado no se         55        0
+2       10      Barriga llena, corazón           45        0
+2       11      Más vale estar solo que mal      85        0
+2       12      El que busca encuentra           105       0
+2       13      Dime con quién andas             35        0
+2       14      Haz bien y no mires a quien      55        0
+2       15      La esperanza es lo último        60        0
+2       16      Lo prometido es deuda            40        0
+2       17      La pereza es la madre de         20        0
+3       1       -¡Estás obsesionado con la       200       0
+3       2       -¿Por qué estás hablando         140       0
+3       3       — Buenos días, me gustaría       300       0
+3       4       — ¡Camarero! Este filete         140       0
+3       5       — Abuelo, ¿por qué estás         200       0
+3       6       — ¿Para que va una caja          300       0
+3       7       — ¿Por qué se suicidó el         250       1
+3       8       — ¿Qué le dice un huevo          300       0
+3       9       — ¿Qué le dice un espagueti      130       0
+3       10      — ¿Qué le dice un grano de       170       0
+3       11      —¿Qué le dice un árbol a otro    180       0
+3       12      — ¿Cómo se llama el primo        150       0
+3       13      — Soy celíaca.                   240       0
+3       14      — ¿Sabes por qué no se           280       0
+3       15      — ¿Por qué el mar no se seca?    210       0
+3       16      — ¿De qué se quejan siempre      65        0
+3       17      — Mamá, en el cole me llaman     20        0
 ----------------------------------------------------------------------------

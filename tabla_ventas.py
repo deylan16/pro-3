@@ -51,7 +51,7 @@ consejo8 = Tabla(1,8,"Ríe y sonríe más a menudo",20,0,0,0,0,0,0,0)
 consejo9 = Tabla(1,9,"Duerme 8 horas al dias",100,0,0,0,0,0,0,0)
 consejo10 = Tabla(1,10,"Toma agua",200,0,0,0,0,0,0,0)
 consejo11 = Tabla(1,11,"Olvida los problemas del pasado.\n No estés recordando a tu compañeros\n por sus errores del pasado",150,0,0,0,0,0,0,0)
-consejo12 = Tabla(1,12,"Cualquiera que se la situación -buena o mala-,\n cambiará",75,0,0,0,0,0,0,0)
+consejo12 = Tabla(1,12,"Cualquiera que sea la situación -buena o mala-,\n cambiará",75,0,0,0,0,0,0,0)
 consejo13 = Tabla(1,13,"No importa cómo te sientas, levántate,\n vístete y sal a la calle",125,0,0,0,0,0,0,0)
 consejo14 = Tabla(1,14,"Sé agradecido con lo que tienes",120,0,0,0,0,0,0,0)
 consejo15 = Tabla(1,15,"No hagas siempre lo que amas,\n ama siempre lo que haces",140,0,0,0,0,0,0,0)
@@ -75,7 +75,7 @@ dicho13 = Tabla(2,13,"Dime con quién andas y te diré quien eres",35,0,0,0,0,0,
 dicho14 = Tabla(2,14,"Haz bien y no mires a quien",55,0,0,0,0,0,0,0)
 dicho15 = Tabla(2,15,"La esperanza es lo último que se pierde",60,0,0,0,0,0,0,0)
 dicho16 = Tabla(2,16,"Lo prometido es deuda",40,0,0,0,0,0,0,0)
-dicho17 = Tabla(2,17,"La pereza es la madre ee todos los vicios",20,0,0,0,0,0,0,0)
+dicho17 = Tabla(2,17,"La pereza es la madre de todos los vicios",20,0,0,0,0,0,0,0)
 
 dichos = [dicho1,dicho2,dicho3,dicho4,dicho5,dicho6,dicho7,dicho8,dicho9,dicho10,dicho11,dicho12,dicho13,dicho14,dicho15,dicho16,dicho17]
 
