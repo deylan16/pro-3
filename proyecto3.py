@@ -204,11 +204,13 @@ def vuelto():
 def vuelto_aux(vuelto):
     if vuelto == 0:
         global bandera_regresar
-        tituloe_vuelto.place_forget()
-        tituloi_vuelto.place_forget()
+        global cuenta
         bandera_regresar = True
-        titulo_graciase.place(x= 150,y=190)
-        titulo_graciasi.place(x= 150,y=350)
+        if cuenta == 0:
+            tituloe_vuelto.place_forget()
+            tituloi_vuelto.place_forget()
+            titulo_graciase.place(x= 150,y=190)
+            titulo_graciasi.place(x= 150,y=350)
         
         return 0
     elif vuelto >= 100:
