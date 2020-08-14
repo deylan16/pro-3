@@ -4,7 +4,7 @@ Tipo    Código  Mensaje                          Precio    Ventas
 1       1       Lo que los demas piensen de      20        0
 1       2       No pierdas tu preciado           50        0
 1       3       Sueña mas cuando                 50        0
-1       4       No tienes que gana               20        0
+1       4       No tienes que gana               20        1
 1       5       No compares tu vida              75        0
 1       6       La vida es demasiado corta       100       0
 1       7       Nadie mas está al                25        1
