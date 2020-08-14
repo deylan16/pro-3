@@ -332,6 +332,16 @@ def hilo1():
     tiqueteale.set_fecha(strftime("%d/%m/%y"))
     tiqueteale.set_hora(strftime("%H:%M:%S")[:5])
     tiqueteale.set_numero_transaccion(1)
+    tablaventas=tiqueteale.get_datos()
+    archivov = open('ventas.txt','w')
+    archivov.write('----------------------------------------------------------------------------------\n')
+    archivov.write('Numero Transaccion    Fecha     Hora   Tipo   Codigo   Monto   Pago  Vuelto\n')
+    archivov.write('----------------------------------------------------------------------------------\n')
+    archivov.close()
+    archivov = open('ventas.txt','a')
+    archivov.write('%s'%tablaventas+'\n')
+    archivov.write('----------------------------------------------------------------------------------\n')
+    archivov.close()
     t1 = Thread(target = imprimir1, args=())
     t1.start()
 
@@ -454,7 +464,7 @@ def cobro(tipo):
         if tipo == 1:
             tiqueteale = random.choice(consejos)
             monedas_faltantes = tiqueteale.get_precio()
-            tiqueteale.set_monto(tiqueteale.get_precio())
+            tiqueteale.set_monto(monedas_faltantes)
             if tiqueteale.get_codigo() == 1:
                 venta11+=1
             if tiqueteale.get_codigo() == 2:

@@ -36,8 +36,8 @@ class Tabla(Tiquete):
     def set_numero_transaccion(self,numero_transaccion):
         self.numero_transaccion = numero_transaccion
     def get_datos(self):
-        resultado = str(self.numero_transaccion)+"       "+ str(self.fecha)+"          "+ str(self.hora)+"                  "+ str(self.tipo)+"                  "+ str(self.codigo)+"                  "+ str(self.monto)+"                  "+ str(self.pago)+"                  "+ str(self.vuelto)
-        print(resultado)
+        resultado = "      "+str(self.numero_transaccion)+"               "+ str(self.fecha)+"  "+ str(self.hora)+"   "+ str(self.tipo)+"      "+ str(self.codigo)+"       "+ str(self.monto)+"       "+ str(self.pago)+"     "+ str(self.vuelto)
+        return resultado
         
 
 consejo1 = Tabla(1,1,"Lo que los demas piensen de ti,\n no es tu problema",20,0,0,0,0,0,0,0)
