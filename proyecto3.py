@@ -303,7 +303,7 @@ def tomar():
     canvas.place(x=100, y=200)
     boleto_guardar.place(x=400,y=400)
     hilo2()
-
+#obtine lo que esta excrito en el txt ventas
 
 #boton del tomar el boleto
 boleto = Button(principal, image=boleto21,command = tomar)
@@ -325,23 +325,33 @@ def imprimir1_aux(lista):
         img.configure(image =lista[0])
         sleep(0.5)
         return imprimir1_aux(lista[1:])
+
 def hilo1():
+    archivol = open('ventas.txt','r')
+    contenido1=archivol.read()
+    contenido = None
+    if contenido1[0] != '0':
+        contenido = contenido1[:-82]
+    if contenido1[0] == '0':
+        contenido = contenido1
+    num = int(contenido[0])+1
+    
     global tiqueteale
     tiqueteale.set_fecha(strftime("%d/%m/%y"))
     tiqueteale.set_hora(strftime("%H:%M:%S")[:5])
-    tiqueteale.set_numero_transaccion(1)
+    
+    tiqueteale.set_numero_transaccion(contenido[0])
     vuel =abs(monedas_faltantes)
     tiqueteale.set_vuelto(vuel)
     tiqueteale.set_pago(monedas_ingresadas)
     tablaventas=tiqueteale.get_datos()
     archivov = open('ventas.txt','w')
-    archivov.write('----------------------------------------------------------------------------------\n')
-    archivov.write('Numero Transaccion    Fecha     Hora   Tipo   Codigo   Monto   Pago  Vuelto\n')
-    archivov.write('----------------------------------------------------------------------------------\n')
+    archivov.write(str(num)) 
+    archivov.write(contenido[1:] + '\n')
     archivov.close()
     archivov = open('ventas.txt','a')
     archivov.write('%s'%tablaventas+'\n')
-    archivov.write('----------------------------------------------------------------------------------\n')
+    archivov.write('----------------------------------------------------------------------------------')
     archivov.close()
     t1 = Thread(target = imprimir1, args=())
     t1.start()
@@ -768,10 +778,13 @@ def regresa():
     global bandera_regresar
     global bandera_admi
     global bandera
+    global monedas_ingresadas
     if bandera_regresar == True:
         bandera_regresar = False
         bandera_admi = True
         bandera = True
+        monedas_ingresadas = 0
+        titulo_contadorf.configure(text= '₡' + str(monedas_faltantes))
         titulo_bienvenidoi.place(x=160,y=220)
         titulo_bienvenidoe.place(x=150,y=200)
         titulo_contraseñae.place_forget()
