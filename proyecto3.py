@@ -4,11 +4,12 @@ from threading import Thread
 from time import *
 from tkinter import messagebox
 from random import *
+import random
 from tabla_ventas import *
 
 #define la ventana principal
 principal = Tk()
-principal.title('principal')
+principal.title('Advice Machine')
 principal.configure(bg= 'white')
 
 #fondo de la ventana
@@ -20,13 +21,31 @@ flecha = PhotoImage(file = "flecha.png")
 fle = Label(principal,image = flecha,bg = 'black')
 #variable par ausar el boton regresar
 bandera_regresar = False
-
 #varaiable para no poder volver a usar admi
 bandera_admi = True
+#variable tiquete
+tiqueteale=0
 #variable que cuenta cuantas monedas de vuelto hay
 cuenta = 0
 #variable para abrir la billetera
 m_colones =0
+#variables de ventas
+venta11 = 0
+venta12=0
+venta13=0
+venta14=0
+venta15=0
+venta16=0
+venta17=0
+venta18=0
+venta19=0
+venta110=0
+venta111=0
+venta112=0
+venta113=0
+venta114=0
+venta115=0
+venta116=0
 #monedas faltantes
 monedas_faltantes = 200
 #monedas ingresadas
@@ -60,8 +79,8 @@ titulo_contraseñai = Label(principal,text = 'Please enter your password',font= 
 titulo_admie = Label(principal,text = 'Bienvenido Admi',font= ('Times New Roman',13),bg= 'black',fg= 'white')
 titulo_admii = Label(principal,text = 'Welcome Admi',font= ('Times New Roman',10),bg= 'black',fg= 'light blue')
 #titulo de gracias y si desea hacerlo otra vez
-titulo_graciase= Label(principal,text = 'Muchas Gracias \n si desea hacerlo \n otra vez  \n oprima regresar',font= ('Times New Roman',21),bg= 'black',fg= 'white')
-titulo_graciasi = Label(principal,text = 'Thank you very \n much if you want \nto do it again \n  press return',font= ('Times New Roman',18),bg= 'black',fg= 'light blue')
+titulo_graciase= Label(principal,text = 'Muchas Gracias \n si desea comprar \n otro  \n oprima regresar',font= ('Times New Roman',21),bg= 'black',fg= 'white')
+titulo_graciasi = Label(principal,text = 'Thank you very \n much if you want \nto buy another \n  press return',font= ('Times New Roman',18),bg= 'black',fg= 'light blue')
 
 
 
@@ -105,7 +124,7 @@ canvas = 0
 def guardar():
     canvas.place_forget()
     boleto_guardar.place_forget()
-    nuevo
+    
 #boton de guardar boleto
 boleto_guardar = Button(principal, text = 'Guadar',command = guardar)
 #animacion del vuelto
@@ -198,17 +217,19 @@ def animacionV(lista,suma,x,y,objeto):
 #R:-
 def vuelto():
     vuel =abs(monedas_faltantes)
-    nuevo.set_vuelto(vuel)
-    nuevo.set_pago(monedas_ingresadas)
+    tiqueteale.set_vuelto(vuel)
+    tiqueteale.set_pago(monedas_ingresadas)
     return vuelto_aux(vuel)
 def vuelto_aux(vuelto):
     if vuelto == 0:
         global bandera_regresar
-        tituloe_vuelto.place_forget()
-        tituloi_vuelto.place_forget()
+        global cuenta
         bandera_regresar = True
-        titulo_graciase.place(x= 150,y=190)
-        titulo_graciasi.place(x= 150,y=350)
+        if cuenta == 0:
+            tituloe_vuelto.place_forget()
+            tituloi_vuelto.place_forget()
+            titulo_graciase.place(x= 150,y=190)
+            titulo_graciasi.place(x= 150,y=350)
         
         return 0
     elif vuelto >= 100:
@@ -245,8 +266,8 @@ def tomar():
     tituloi_vuelto.place(x= 170,y=350)
     global canvas
     canvas = Canvas(principal , width= 400, height = 200, bg = "white")
-    resultado = Label(canvas,text = 'TE AMO MI VIDA',font= ('Times New Roman',17),bg= 'white',fg= 'black')
-    resultado.place(x=100,y=100)
+    resultado = Label(canvas,text = tiqueteale.get_mensaje(),font= ('Times New Roman',13),bg= 'white',fg= 'black')
+    resultado.place(x=10,y=50)
     canvas.place(x=100, y=200)
     boleto_guardar.place(x=400,y=400)
     hilo2()
@@ -273,9 +294,10 @@ def imprimir1_aux(lista):
         sleep(0.5)
         return imprimir1_aux(lista[1:])
 def hilo1():
-    nuevo.set_fecha(strftime("%d/%m/%y"))
-    nuevo.set_hora(strftime("%H:%M:%S")[:5])
-    nuevo.set_numero_transaccion(535)
+    global tiqueteale
+    tiqueteale.set_fecha(strftime("%d/%m/%y"))
+    tiqueteale.set_hora(strftime("%H:%M:%S")[:5])
+    tiqueteale.set_numero_transaccion(1)
     t1 = Thread(target = imprimir1, args=())
     t1.start()
 
@@ -393,19 +415,68 @@ def cobro(tipo):
         primera = [titulo_bienvenidoe.place_forget(),titulo_bienvenidoi.place_forget()]
         global monedas_faltantes
         global nuevo
+        global tiqueteale
+        global venta11,venta12,venta13,venta14,venta15,venta16,venta17,venta18,venta19,venta110,venta111,venta112,venta113,venta114,venta115,venta116
         if tipo == 1:
-            nuevo.set_tipo(1)
-            monedas_faltantes = 20
+            tiqueteale = random.choice(consejos)
+            monedas_faltantes = tiqueteale.get_precio()
+            if tiqueteale.get_codigo() == 1:
+                venta11+=1
+            if tiqueteale.get_codigo() == 2:
+                venta12+=1
+            if tiqueteale.get_codigo() == 3:
+                venta13+=1
+            if tiqueteale.get_codigo() == 4:
+                venta14+=1
+            if tiqueteale.get_codigo() == 5:
+                venta15+=1
+            if tiqueteale.get_codigo() == 6:
+                venta16+=1
+            if tiqueteale.get_codigo() == 7:
+                venta17+=1
+            if tiqueteale.get_codigo() == 8:
+                venta18+=1
+            if tiqueteale.get_codigo() == 9:
+                venta19+=1
+            if tiqueteale.get_codigo() == 10:
+                venta110+=1
+            if tiqueteale.get_codigo() == 11:
+                venta111+=1
+            if tiqueteale.get_codigo() == 12:
+                venta112+=1
+            if tiqueteale.get_codigo() == 13:
+                venta113+=1
+            if tiqueteale.get_codigo() == 14:
+                venta114+=1
+            if tiqueteale.get_codigo() == 15:
+                venta115+=1
+            if tiqueteale.get_codigo() == 16:
+                venta116+=1
         if tipo == 2:
-            nuevo.set_tipo(2)
-            monedas_faltantes =300
+            tiqueteale = random.choice(dichos)
+            monedas_faltantes =tiqueteale.get_precio()
         if tipo == 3:
-            nuevo.set_tipo(3)
-            monedas_faltantes = 400
+            tiqueteale = random.choice(chistes)
+            monedas_faltantes = tiqueteale.get_precio()
         titulo_contadorf.configure(text= '₡' + str(monedas_faltantes))
         segundap = [titulo_contador,titulo_contadorf,tituloe_inserte.place(x=150,y=200),tituloi_inserte.place(x=150,y=220),tituloe_dinerof.place(x=280,y=410),
                     tituloi_dinerof.place(x=280,y=430),tituloe_dinero.place(x=150,y=410),tituloi_dinero.place(x=150,y=430),titulo_contador.place(x=150,y=450),
                     titulo_contadorf.place(x=280,y=450),fle.place(x=270,y =280)]
+        archivo = open('mensajes.txt','w')
+        archivo.write('----------------------------------------------------------------------------\n')
+        archivo.write('Tipo    Código  Mensaje                          Precio    Ventas\n')
+        archivo.write('----------------------------------------------------------------------------\n')
+        archivo.write('1       1       Lo que los demas piensen de      20        %s'%venta11+'\n')
+        archivo.write('1       2       No pierdas tu preciado           50        %s'%venta12+'\n')
+        archivo.write('1       3       Sueña mas cuando                 50        %s'%venta13+'\n')
+        archivo.write('1       4       No tienes que gana               20        %s'%venta14+'\n')
+        archivo.write('1       5       No compares tu vida              75        %s'%venta15+'\n')
+        archivo.write('1       6       La vida es demasia               100       %s'%venta16+'\n')
+        archivo.write('1       7       Nadie mas está al                25        %s'%venta17+'\n')
+        archivo.write('1       8       Ríe y sonríe más a               20        %s'%venta18+'\n')
+        archivo.write('1       9       Duerme 8 horas al                100       %s'%venta19+'\n')
+        archivo.write('----------------------------------------------------------------------------\n')
+        archivo.close()
          
         colones()
 
@@ -520,8 +591,6 @@ principio= Button(principal,text= 'Regresar',command = regresa)
 principio.place(x= 440,y=620)
 
 
-
- 
 
 #tamaño de la ventana
 principal.geometry('600x700+400+0')
