@@ -21,6 +21,7 @@ class Tabla(Tiquete):
         self.fecha = fecha
         self.hora = hora
         self.monto = monto
+        self.precio = precio
         self.pago = pago
         self.vuelto = vuelto
     def set_fecha(self,fecha):
@@ -35,6 +36,8 @@ class Tabla(Tiquete):
         self.vuelto = vuelto
     def set_numero_transaccion(self,numero_transaccion):
         self.numero_transaccion = numero_transaccion
+    def get_precio(self):
+        return self.precio
     def get_datos(self):
         resultado = "      "+str(self.numero_transaccion)+"               "+ str(self.fecha)+"  "+ str(self.hora)+"   "+ str(self.tipo)+"      "+ str(self.codigo)+"       "+ str(self.monto)+"       "+ str(self.pago)+"     "+ str(self.vuelto)
         return resultado
